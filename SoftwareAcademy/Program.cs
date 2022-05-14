@@ -10,17 +10,17 @@ namespace SoftwareAcademy
         static void Main(string[] args)
         {
             // An array of 10 humans that contains 5 backend and 5 frontend
-            string[] humans = { "Frontend","Backend", "Frontend", "Backend", "Frontend",
-                "Backend", "Frontend", "Backend", "Frontend", "Backend" };
+            Programme[] humans = { Programme.Frontend,Programme.Backend, Programme.Frontend, Programme.Backend, Programme.Frontend,
+                Programme.Backend, Programme.Frontend, Programme.Backend, Programme.Frontend, Programme.Backend };
             
             // an array of week days
-            string[] weekDays = { "Monday", "Wednesday" };
+            Day[] weekDays = { Day.Monday, Day.Wednesday };
            
             // A frontend academy object
-            Academy frontend = new Academy("Frontend", Academy.GetFrontendDays());
+            Academy frontend = new Academy(Programme.Frontend);
 
             // A backend academy object
-            Academy backend = new Academy("Backend", Academy.GetBackendDays());
+            Academy backend = new Academy(Programme.Backend);
           
             // A loop to check if the human belongs to either frontend or backend 
             // and checks if the week days is the possible weekdays for the programme
@@ -47,9 +47,8 @@ namespace SoftwareAcademy
 
 
         //This recursion function checks if the weekdays is the possible weekdays for the programme.
-        public static void CheckProgrammeWeekDay(List<Day> days,string[] weekDay,int n)
+        public static void CheckProgrammeWeekDay(List<Day> days,Day[] weekDay,int n)
         {
-            List<string> weekDays = days.Select(s => s.ToString()).ToList();
              
             //This condition checks if the length is less than 2
             if (n < 2)
@@ -58,7 +57,7 @@ namespace SoftwareAcademy
                 Console.WriteLine($"{weekDay[n]}");
 
                 //Check if the week day is possible weekdays for the programme
-                if (weekDays.Contains(weekDay[n]))
+                if (days.Contains(weekDay[n]))
                 {
                     Console.WriteLine("The host will let you in shortly");
                     //Delay for 5 seconds or 5000 milliseconds

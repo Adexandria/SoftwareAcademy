@@ -6,15 +6,22 @@ namespace SoftwareAcademy
 {
     public class Academy
     {
-        public Academy(string programme,List<Day> days )
+        public Academy(Programme programme)
         {
             this.Programme = programme;
-            this.Days = days;
+            if (this.Programme == Programme.Backend)
+            {
+                this.Days = GetBackendDays();
+            }
+            else
+            {
+                this.Days = GetFrontendDays();
+            }
         }
-        public string Programme { get; set; }
+        public Programme Programme { get; set; }
         public List<Day> Days { get; set; }
 
-        public static List<Day> GetFrontendDays()
+        private  List<Day> GetFrontendDays()
         {
             List<Day> frontendDays = new List<Day>
             {
@@ -24,7 +31,7 @@ namespace SoftwareAcademy
             };
             return frontendDays;
         }
-        public static List<Day> GetBackendDays()
+        private List<Day> GetBackendDays()
         {
             List<Day> backendDays = new List<Day>
             {
