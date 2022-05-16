@@ -9,28 +9,37 @@ namespace SoftwareAcademy
     {
         static void Main(string[] args)
         {
-            // An array of 10 humans that contains 5 backend and 5 frontend
-            Programme[] humans = { Programme.Frontend,Programme.Backend, Programme.Frontend, Programme.Backend, Programme.Frontend,
-                Programme.Backend, Programme.Frontend, Programme.Backend, Programme.Frontend, Programme.Backend };
+            // An array of 10 humans that contains 6 students and 4 facilitators
+            Human[] humans = new Human[]
+            {
+                new Student(AcademyProgramme.Frontend),
+                new Student(AcademyProgramme.Backend),
+                new Student(AcademyProgramme.Frontend),
+                new Student(AcademyProgramme.Backend),
+                new Student(AcademyProgramme.Frontend),
+                new Student(AcademyProgramme.Backend),
+                new Facilitator(AcademyProgramme.Backend),
+                new Facilitator(AcademyProgramme.Frontend),
+                new Facilitator(AcademyProgramme.Backend),
+                new Facilitator(AcademyProgramme.Frontend)
+            };
+
             
             // an array of week days
             Day[] weekDays = { Day.Monday, Day.Wednesday };
-           
-            // A frontend academy object
-            Academy frontend = new Academy(Programme.Frontend);
 
-            // A backend academy object
-            Academy backend = new Academy(Programme.Backend);
+            Programme frontend = new Programme(AcademyProgramme.Frontend);
+            Programme backend = new Programme(AcademyProgramme.Backend);
           
             // A loop to check if the human belongs to either frontend or backend 
             // and checks if the week days is the possible weekdays for the programme
             for (int i = 0; i < humans.Length; i++)
             {
                 //checks if the human belongs to the frontend programme
-                if (frontend.Programme == humans[i])
+                if (frontend.AcademyProgramme == humans[i].AcademyProgramme)
                 {
                     /// prints outs the human programme
-                    Console.WriteLine($"{humans[i]}");
+                    Console.WriteLine($"{humans[i].AcademyProgramme}");
                     //checks if the week day is the possible weekday for frontend programme
                     CheckProgrammeWeekDay(frontend.Days, weekDays,0);
 
@@ -38,7 +47,7 @@ namespace SoftwareAcademy
                 else
                 {
                    /// prints outs the human programme
-                   Console.WriteLine($"{humans[i]}");
+                   Console.WriteLine($"{humans[i].AcademyProgramme}");
                    //checks if the week day is the possible weekday for backend programme
                    CheckProgrammeWeekDay(backend.Days, weekDays,0);
                 }
